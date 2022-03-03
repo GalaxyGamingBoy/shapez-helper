@@ -34,11 +34,11 @@ var encodeB64Cmd = &cobra.Command{
 	- .PNG`,
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, _ := ini.Load("settings.ini")
-		encodeFilePath := cfg.Section("encodeFile").Key("defaultEncodeName").String() + "." + cfg.Section("encodeFile").Key("defaultEncodeExtension").String()
+		encodeFilePath := cfg.Section("encodeFileParameters").Key("defaultEncodeName").String() + "." + cfg.Section("encodeFileParameters").Key("defaultEncodeExtension").String()
 		filePath := args[0]
 		fileContent := getFileData(filePath)
 		encodedData := base64.StdEncoding.EncodeToString(fileContent)
-		if(cfg.Section("").Key("writeEncodeFile").String() == "true"){
+		if(cfg.Section("encodeData").Key("writeEncodeFile").String() == "true"){
 			os.Remove(cfg.Section("other").Key("latestEncodeFile").String())
 			file, _ := os.Create(encodeFilePath)
 			file.Write([]byte(encodedData))
@@ -46,7 +46,9 @@ var encodeB64Cmd = &cobra.Command{
 			cfg.Section("other").Key("latestEncodeFile").SetValue(encodeFilePath)
 			cfg.SaveTo("settings.ini")
 		}
-		fmt.Println(encodedData)
+		if(cfg.Section("encodeData").Key("printEncodeData").String() == "true"){
+			fmt.Println(encodedData)
+		}
 	},
 }
 

@@ -15,9 +15,9 @@ var encodeB64LineCmd = &cobra.Command{
 	Long: `Encodes selected line to Base64`,
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, _ := ini.Load("settings.ini")
-		encodeFilePath := cfg.Section("encodeFile").Key("defaultEncodeName").String() + "." + cfg.Section("encodeFile").Key("defaultEncodeExtension").String()
+		encodeFilePath := cfg.Section("encodeFileParameters").Key("defaultEncodeName").String() + "." + cfg.Section("encodeFileParameters").Key("defaultEncodeExtension").String()
 		encodedData := base64.StdEncoding.EncodeToString([]byte(args[0]))
-		if(cfg.Section("").Key("writeEncodeFile").String() == "true"){
+		if(cfg.Section("encodeData").Key("writeEncodeFile").String() == "true"){
 			os.Remove(cfg.Section("other").Key("latestEncodeFile").String())
 			file, _ := os.Create(encodeFilePath)
 			file.Write([]byte(encodedData))
@@ -25,7 +25,9 @@ var encodeB64LineCmd = &cobra.Command{
 			cfg.Section("other").Key("latestEncodeFile").SetValue(encodeFilePath)
 			cfg.SaveTo("settings.ini")
 		}
-		fmt.Println(encodedData)
+		if(cfg.Section("encodeData").Key("printEncodeData").String() == "true"){
+			fmt.Println(encodedData)
+		}
 	},
 }
 
