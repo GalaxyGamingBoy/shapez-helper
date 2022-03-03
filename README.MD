@@ -3,6 +3,7 @@
 WIP - Work In progress
 
 This is a cli tool to help mod developers mod ShapezIO
+For CommandList open commands.html file
 
 ## Why should I use this CLI Tool?
 
