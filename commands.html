@@ -64,6 +64,50 @@
                         >
                     </td>
                 </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>mergeFiles</td>
+                    <td>
+                        Merge all files with the selected extension in the /src/
+                        folder. <bold>!! NOTE !! End Imports with this comment <code>// IMPORT-END</code></bold>
+                    </td>
+                    <td>mergeFiles [fileExtension] [fileOutputName]</td>
+                    <td>
+                        <code
+                            >shapez-helper.exe mergeFiles "js"
+                            "mergeMODFiles"</code
+                        >
+                        <div class="treeview-animated w-20 border mx-4 my-4">
+  <h6 class="pt-3 pl-3">File System</h6>
+  <hr>
+  <ul class="treeview-animated-list mb-3">
+    <li class="treeview-animated-items">
+      <a class="closed">
+        <i class="fas fa-angle-right"></i>
+        <span><i class="far fa-folder-open ic-w mx-1"></i>src</span>
+      </a>
+      <ul class="nested">
+        <li>
+          <div class="treeview-animated-element"><i class="far fa-folder-open ic-w mr-1"></i>fileA.js
+        </li>
+          <li>
+          <div class="treeview-animated-element"><i class="far fa-folder-open ic-w mr-1"></i>fileB.js
+        </li>
+            <li>
+          <div class="treeview-animated-element"><i class="far fa-folder-open ic-w mr-1"></i>fileC.js
+        </li>
+              <li>
+          <div class="treeview-animated-element"><i class="far fa-folder-open ic-w mr-1"></i>fileD.js
+        </li>
+      </ul>
+      <li>
+          <div class="treeview-animated-element"><i class="far fa-folder-open ic-w mr-1"></i>mergeMODFiles.js
+        </li>
+    </li>
+  </ul>
+</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <script
